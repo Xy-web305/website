@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Garden</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f7;
+            overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .float {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .message-box {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .message-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .translation-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .music-note {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Background elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute top-10 left-10 text-pink-300 heart text-4xl">❤️</div>
+        <div class="absolute top-1/4 right-20 text-pink-300 heart text-4xl" style="animation-delay: 0.5s;">❤️</div>
+        <div class="absolute bottom-20 left-1/4 text-pink-300 heart text-4xl" style="animation-delay: 1s;">❤️</div>
+        <div class="absolute bottom-1/3 right-1/3 text-pink-300 heart text-4xl" style="animation-delay: 1.5s;">❤️</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex flex-col items-center justify-center px-4">
+        <div class="text-center mb-10">
+            <h1 class="dancing-font text-5xl md:text-7xl font-bold text-pink-600 mb-6">Our Love Story</h1>
+            <p class="text-xl md:text-2xl text-pink-500 max-w-2xl mx-auto">A journey of love, laughter, and endless memories...</p>
+        </div>
+        
+        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-pink-300 shadow-lg">
+            <img src="ces.jpg" alt="Happy couple holding hands on a sunset beach, smiling at each other with love in their eyes" 
+                 class="w-full h-full object-cover cursor-pointer" onclick="showImage(this.src, this.alt)" />
+        </div>
+        
+        <button id="playMusicBtn" class="mt-10 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex items-center gap-2 transition-all">
+            <span class="music-note">💝</span>
+                My Princes
+            <span class="music-note" style="animation-delay: 0.3s;">💝</span>
+        </button>
+        
+        <audio id="romanticMusic" loop>
+            <!-- Placeholder for music, would be replaced with actual romantic music -->
+            <source src="#" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Love Messages -->
+    <section class="py-16 px-4 bg-gradient-to-b from-pink-50 to-purple-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="dancing-font text-4xl text-center text-purple-600 mb-12">Sweet Messages</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="message-box bg-white p-6 rounded-xl shadow-md border border-pink-200 relative overflow-hidden" data-translated="false" onclick="toggleTranslation(this)">
+                    <div class="text-pink-500 text-xl mb-2">💝</div>
+                    <h3 class="text-xl font-semibold text-pink-600 mb-2">My Heart is Yours</h3>
+                    <p class="text-gray-600 english-text">Every beat it makes belongs to you and you alone. No matter where life takes us, my heart will always find its way back to you.</p>
+                    <p class="text-gray-600 translation-text hidden">Setiap detak jantungku adalah milikmu. Dimanapun kehidupan membawa kita, hatiku akan selalu menemukan jalan kembali padamu.</p>
+                    <button class="absolute bottom-2 right-2 text-xs text-pink-400 hover:text-pink-600">Terjemahkan</button>
+                </div>
+                
+                <div class="message-box bg-white p-6 rounded-xl shadow-md border border-purple-200 relative overflow-hidden" data-translated="false" onclick="toggleTranslation(this)">
+                    <div class="text-purple-500 text-xl mb-2">🌹</div>
+                    <h3 class="text-xl font-semibold text-purple-600 mb-2">Like a Rose</h3>
+                    <p class="text-gray-600 english-text">Our love is like a rose - beautiful, delicate, and worth protecting. It grows stronger with each passing season, blossoming into something extraordinary.</p>
+                    <p class="text-gray-600 translation-text hidden">Cinta kita seperti mawar - indah, lembut, dan layak dilindungi. Semakin kuat tumbuh seiring waktu, mekar menjadi sesuatu yang luar biasa.</p>
+                    <button class="absolute bottom-2 right-2 text-xs text-purple-400 hover:text-purple-600">Terjemahkan</button>
+                </div>
+                
+                <div class="message-box bg-white p-6 rounded-xl shadow-md border border-pink-200 relative overflow-hidden" data-translated="false" onclick="toggleTranslation(this)">
+                    <div class="text-pink-500 text-xl mb-2">✨</div>
+                    <h3 class="text-xl font-semibold text-pink-600 mb-2">Starlit Nights</h3>
+                    <p class="text-gray-600 english-text">I want to spend countless nights under the stars with you, sharing dreams and making promises that will last a lifetime.</p>
+                    <p class="text-gray-600 translation-text hidden">Aku ingin menghabiskan malam tak terhitung di bawah bintang bersamamu, berbagi mimpi dan membuat janji yang akan bertahan seumur hidup.</p>
+                    <button class="absolute bottom-2 right-2 text-xs text-pink-400 hover:text-pink-600">Terjemahkan</button>
+                </div>
+                
+                <div class="message-box bg-white p-6 rounded-xl shadow-md border border-purple-200 relative overflow-hidden" data-translated="false" onclick="toggleTranslation(this)">
+                    <div class="text-purple-500 text-xl mb-2">📝</div>
+                    <h3 class="text-xl font-semibold text-purple-600 mb-2">Our Story</h3>
+                    <p class="text-gray-600 english-text">Every chapter with you is my favorite. The story of us is the one I want to read over and over again.</p>
+                    <p class="text-gray-600 translation-text hidden">Setiap bab bersamamu adalah favoritku. Kisah kita adalah kisah yang ingin kubaca berulang kali.</p>
+                    <button class="absolute bottom-2 right-2 text-xs text-purple-400 hover:text-purple-600">Terjemahkan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Gallery -->
+    <section class="py-16 px-4 bg-gradient-to-b from-purple-50 to-pink-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="dancing-font text-4xl text-center text-pink-600 mb-12">Foto Princes Naila</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-64">
+                    <img src="nay.jpg" alt="Couple walking together in autumn park with colorful falling leaves around them" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer" onclick="showImage(this.src, this.alt)" />
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer" onclick="showImage(this.parentElement.querySelector('img').src, this.parentElement.querySelector('img').alt)">
+                        <span class="text-white text-xl dancing-font">Princes</span>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-64">
+                    <img src="naila.jpg" alt="Romantic candlelight dinner with wine glasses clinking in a cozy restaurant" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer" onClick="document.getElementById('modalImage').src = this.src; document.getElementById('imageModal').classList.remove('hidden')" />
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer" onclick="showImage(this.parentElement.querySelector('img').src, this.parentElement.querySelector('img').alt)">
+                        <span class="text-white text-xl dancing-font">Naila</span>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-64">
+                    <img src="nai.jpg" alt="Romantic candlelight dinner with wine glasses clinking in a cozy restaurant" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer" onClick="document.getElementById('modalImage').src = this.src; document.getElementById('imageModal').classList.remove('hidden')" />
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer" onclick="showImage(this.parentElement.querySelector('img').src, this.parentElement.querySelector('img').alt)">
+                        <span class="text-white text-xl dancing-font">Naila</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-2xl mx-auto bg-pink-50 rounded-xl shadow-md p-8 md:p-12 relative" id="love-letter" data-translated="false">
+            <div class="absolute -top-5 -left-5 text-6xl text-pink-300">“</div>
+            <div class="absolute -bottom-5 -right-5 text-6xl text-pink-300">”</div>
+            
+            <h2 class="dancing-font text-3xl text-center text-pink-600 mb-8">My Dearest Love</h2>
+            
+            <div class="space-y-4 text-gray-700">
+                <p class="english-text">From the moment our eyes met, I knew there was something special between us. Every day since then has been a gift beyond measure.</p>
+                <p class="translation-text hidden">Sejak pertama kali pandangan kita bertemu, aku tahu ada sesuatu yang istimewa di antara kita. Setiap hari bersamamu adalah anugerah yang tak ternilai.</p>
+                
+                <p class="english-text">Your smile lights up my darkest days, your laughter is the melody that plays in my heart, and your love is the foundation upon which I've built my happiness.</p>
+                <p class="translation-text hidden">Senymu menerangi hari-hariku yang paling gelap, tawamu adalah melodi yang bermain di hatiku, dan cintamu adalah landasan kebahagiaanku.</p>
+                
+                <p class="english-text">I promise to cherish you, to stand by you through all of life's adventures, and to love you more deeply with each passing day. No matter where life takes us, know that my love for you will remain constant and true.</p>
+                <p class="translation-text hidden">Aku berjanji akan menghargaimu, mendampingimu dalam semua petualangan hidup, dan mencintaimu lebih dalam dengan setiap hari yang berlalu. Dimanapun kehidupan membawa kita, ketahuilah cintaku padamu akan tetap konstan dan murni.</p>
+                
+                <p class="text-pink-600 font-medium english-text">Forever yours,</p>
+                <p class="text-pink-600 font-medium translation-text hidden">Selamanya milikmu,</p>
+            </div>
+            <button onclick="toggleLoveLetterTranslation()" class="absolute bottom-4 right-4 px-3 py-1 bg-pink-500 hover:bg-pink-600 text-white rounded-full text-sm">
+                Terjemahkan
+            </button>
+        </div>
+    </section>
+
+    <!-- Floating Hearts Animation -->
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+        <div class="relative max-w-4xl w-full p-4">
+            <button id="closeModal" class="absolute -top-10 right-0 text-white text-2xl" onclick="document.getElementById('imageModal').classList.add('hidden')"></button>
+            <img id="modalImage" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-lg">
+        </div>
+    </div>
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div id="floatingHeartsContainer"></div>
+    </div>
+
+    <!-- Countdown -->
+    <section class="py-16 px-3 bg-gradient-to-b from-white to-pink-50">
+        <div class="max-w-md mx-auto text-center bg-white p-8 rounded-xl shadow-lg">
+            <h2 class="dancing-font text-3xl text-pink-600 mb-6">Born On Date</h2>
+            <div class="grid grid-cols-3 gap-3 mb-8">
+                <div class="bg-pink-100 rounded-lg p-3">
+                    <div class="text-3xl font-bold text-pink-600">13</div>
+                    <div class="text-sm text-pink-500">Date</div>
+                </div>
+                <div class="bg-pink-100 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-pink-600">02</div>
+                    <div class="text-sm text-pink-600 ">Months</div>
+                </div>
+                <div class="bg-pink-100 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-pink-600">2008</div>
+                    <div class="text-sm text-pink-500">Years</div>
+                </div>
+            </div>
+            <button class="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-full">Set Our Anniversary</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-pink-600 text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="dancing-font text-2xl mb-4">Made with ❤️ for you</p>
+            <p>Always Healthy, Good eople</p>
+        </div>
+    </footer>
+
+    <script>
+        // Floating hearts animation
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('absolute', 'text-pink-300', 'heart', 'float');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = -50 + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            document.getElementById('floatingHeartsContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        
+        // Generate floating hearts periodically
+        setInterval(createFloatingHeart, 300);
+
+        // Image modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('closeModal');
+
+        document.querySelectorAll('img[class*="object-cover"]').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        
+        // Image modal function
+        function showImage(src, alt) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalImage').alt = alt;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        // Translation toggle function
+        function toggleTranslation(element) {
+            const isTranslated = element.getAttribute('data-translated') === 'true';
+            element.setAttribute('data-translated', !isTranslated);
+            
+            const englishText = element.querySelector('.english-text');
+            const translationText = element.querySelector('.translation-text');
+            
+            englishText.classList.toggle('hidden');
+            translationText.classList.toggle('hidden');
+        }
+
+        // Music player
+        const playMusicBtn = document.getElementById('playMusicBtn');
+        const romanticMusic = document.getElementById('romanticMusic');
+        let isPlaying = false;
+        
+        playMusicBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                romanticMusic.pause();
+                playMusicBtn.innerHTML = '<span class="music-note">🎵</span> Play Our Song <span class="music-note" style="animation-delay: 0.3s;">🎵</span>';
+            } else {
+                romanticMusic.play().catch(e => {
+                    alert('Could not play music: ' + e.message);
+                });
+                playMusicBtn.innerHTML = '<span class="music-note">🎵</span> Pause Music <span class="music-note" style="animation-delay: 0.3s;">🎵</span>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Translation functionality
+        function toggleTranslation(element) {
+            const isTranslated = element.getAttribute('data-translated') === 'true';
+            element.setAttribute('data-translated', !isTranslated);
+            
+            const englishTexts = element.querySelectorAll('.english-text');
+            const translationTexts = element.querySelectorAll('.translation-text');
+            const translateBtn = element.querySelector('button');
+
+            if (isTranslated) {
+                englishTexts.forEach(el => el.classList.remove('hidden'));
+                translationTexts.forEach(el => el.classList.add('hidden'));
+                if(translateBtn) translateBtn.textContent = 'Terjemahkan';
+            } else {
+                englishTexts.forEach(el => el.classList.add('hidden'));
+                translationTexts.forEach(el => el.classList.remove('hidden'));
+                if(translateBtn) translateBtn.textContent = 'English';
+            }
+        }
+
+        // Message box translations
+        document.querySelectorAll('.message-box button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleTranslation(this.closest('.message-box'));
+            });
+        });
+
+        // Love letter click handler
+        document.getElementById('love-letter').addEventListener('click', function(e) {
+            if(e.target.tagName !== 'BUTTON' && e.target.closest('button') === null) {
+                toggleTranslation(this);
+            }
+        });
+
+        // Countdown timer
+        let anniversaryDate = localStorage.getItem('anniversaryDate') 
+            ? new Date(localStorage.getItem('anniversaryDate')) 
+            : new Date();
+            
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - anniversaryDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById('years').textContent = years.toString().padStart(2, '0');
+            document.getElementById('months').textContent = months.toString().padStart(2, '0');
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        }
+        
+        document.getElementById('setDateBtn').addEventListener('click', function() {
+            const dateString = prompt('Enter your anniversary date (YYYY-MM-DD):');
+            if (dateString) {
+                const date = new Date(dateString);
+                if (!isNaN(date.getTime())) {
+                    anniversaryDate = date;
+                    localStorage.setItem('anniversaryDate', date);
+                    updateCountdown();
+                } else {
+                    alert('Invalid date format. Please use YYYY-MM-DD.');
+                }
+            }
+        });
+        
+        updateCountdown();
+        setInterval(updateCountdown, 3600000); // Update every hour
+
+        // Love letter translation toggle
+        // Image modal close button
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('imageModal').classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if(e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
